@@ -28,11 +28,9 @@ jobs:
           allure-endpoint: https://yuri.testops.cloud
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ secrets.ALLURE_PROJECT_ID }}
-      - name: connect allur
-        run: allurectl watch
       - name: Install dependencies
         run: npm ci
       - name: Run tests
-        run: npx playwright test
+        run: allurectl watch -- npx playwright test
 
 
