@@ -1,19 +1,12 @@
 name: run tests
 on:
   workflow_dispatch:
-    inputs:
-      ALLURE_JOB_RUN_ID:
-        description: ""
-        required: false
-        ALLURE_USERNAME:
-          description: ""
-          required: false
   pull_request:
     branches:
       - main
 
 env:
-  ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in
+  ALLURE_ENDPOINT: https://yuri.testops.cloud
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
   ALLURE_RESULTS: "allure-results"
@@ -31,7 +24,7 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: npm ci
-      - name: Run your tests
+      - name: Run tests
         run: npx playwright test
 
 
