@@ -53,7 +53,7 @@ test('Resolve crossword', async ({ page, gamePage, testData }) => {
 });
 
 test('Check anti-adblocker', async ({ page, gamePage }) => {
-    await allure.id('2');
+    await allure.id('34');
 
     await test.step('Activate adblocker', async () => {
         await gamePage.enableAdblocker();
@@ -77,6 +77,8 @@ test('Check anti-adblocker', async ({ page, gamePage }) => {
 
 
 test('Failed test example', async ({ page, gamePage }) => {
+    await allure.id('67');
+
     await test.step('Go to game page', async () => {
         await page.goto('/games/daily-quick-crossword', { waitUntil: 'domcontentloaded' });
     });
