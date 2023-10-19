@@ -27,7 +27,7 @@ jobs:
       - name: Pull Docker image
         run: docker pull osachi/arkadium:latest
       - name: Run tests
-        run: docker run  --rm  arcadium
+        run: docker run  --rm  osachi/arkadium
 
 
 
