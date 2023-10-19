@@ -1,10 +1,16 @@
 name: build and push image
 
-- name: Build and push
-  uses: docker/build-push-action@v5
-  with:
-    context: .
-    push: true
-    tags: "ghcr.io/osachi/arkadium:latest"
-    cache-from: type=gha
-    cache-to: type=gha,mode=max
+on:
+  workflow_dispatch:
+job:
+  build:
+    runs-on: ubuntu-latest
+  steps:
+  - name: Build and push
+    uses: docker/build-push-action@v5
+    with:
+      context: .
+      push: true
+      tags: "ghcr.io/osachi/arkadium:latest"
+      cache-from: type=gha
+      cache-to: type=gha,mode=max
