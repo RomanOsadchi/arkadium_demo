@@ -69,7 +69,24 @@ test('Check anti-adblocker', async ({ page, gamePage }) => {
         await expect(gamePage.getYouAreUsingAdBlockerContainer())
             .toContainText('We noticed that you are using an ad blocker.');
     });
+
     await test.step('Match banner screenshot with the saved one', async () => {
         expect(await gamePage.getYouAreUsingAdBlockerContainer().screenshot()).toMatchSnapshot();
+    });
+});
+
+
+test('Failed test example', async ({ page, gamePage }) => {
+    await test.step('Go to game page', async () => {
+        await page.goto('/games/daily-quick-crossword', { waitUntil: 'domcontentloaded' });
+    });
+
+    await test.step('Purposely replacing header fonts', async () => {
+        const header = gamePage.getGameHeaderTitle();
+        await header.evaluate((el) => el.style['font-family'] = 'Serif,sans-serif');
+    });
+
+    await test.step('Match banner screenshot with the saved one', async () => {
+        expect(await gamePage.getGameHeaderTitle().screenshot()).toMatchSnapshot();
     });
 });
