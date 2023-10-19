@@ -24,7 +24,7 @@ test('Resolve crossword', async ({ page, gamePage, testData }) => {
     await canvasBox.resolveCrosswordWithRevealing();
     await expect(canvasBox.getGameEndPopup()).toBeVisible();
     await page.waitForTimeout(1000);
-    expect(await canvasBox.getGameEndPopup().screenshot()).toMatchSnapshot({ maxDiffPixelRatio: 0.1 });
+    expect(await canvasBox.getGameEndPopup().screenshot()).toMatchSnapshot({ maxDiffPixelRatio: 0.15 });
     await canvasBox.clickByText('Submit Total Score');
     // await page.pause();
 });

@@ -11,5 +11,5 @@ jobs:
           context: .
           push: true
           tags: 'ghcr.io/osachi/arkadium:latest'
-          cache-from: type=gha
-          cache-to: 'type=gha,mode=max'
+#          cache-from: type=gha
+#          cache-to: 'type=gha,mode=max'
