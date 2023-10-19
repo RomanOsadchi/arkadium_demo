@@ -9,7 +9,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          image: 'osachi/arkadium'
+          tag: 'docker.io/osachi/arkadium:latest'
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD}}
