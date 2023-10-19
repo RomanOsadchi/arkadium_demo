@@ -2,7 +2,7 @@ name: build and push image
 
 on:
   workflow_dispatch:
-job:
+jobs:
   build:
     runs-on: ubuntu-latest
   steps:
