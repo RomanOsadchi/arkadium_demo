@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker build -t arcadium -f Dockerfile .
+      - name: Pull Docker image from GHCR
+          run: docker pull ghcr.io/osachi/arkadium:latest
       - name: Run tests
         run: docker run  --rm  arcadium
 
