@@ -8,3 +8,4 @@ COPY . ./
 RUN npm install
 RUN npx playwright install
 
+CMD ['bash']
