@@ -16,5 +16,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/arkadium:latest'
+          tags: ${{ secrets.DOCKER_USERNAME }}/arkadium:latest
 
