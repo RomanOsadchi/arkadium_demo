@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Run tests
-        run: /bin/bash npx playwright test
+        run: npx playwright test
 
 
 
