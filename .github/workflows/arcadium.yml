@@ -24,11 +24,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: osachi/arkadium:latest
-      ports:
-        - 80
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
       - name: Run tests
-        run: /bin/bash npx playwright test
+        run: npx playwright test
 
 
