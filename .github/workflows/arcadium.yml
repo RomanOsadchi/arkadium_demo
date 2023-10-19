@@ -1,9 +1,24 @@
 name: run tests
 on:
   workflow_dispatch:
+    inputs:
+      ALLURE_JOB_RUN_ID:
+        description: ""
+        required: false
+        ALLURE_USERNAME:
+          description: ""
+          required: false
   pull_request:
     branches:
       - main
+
+env:
+  ALLURE_ENDPOINT: https://testing.allure.aws.qameta.in
+  ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
+  ALLURE_RESULTS: "allure-results"
+  ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
