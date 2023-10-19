@@ -10,7 +10,6 @@ jobs:
         with:
           push: true
           tag: 'docker.io/osachi/arkadium:latest'
-          registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD}}
 
