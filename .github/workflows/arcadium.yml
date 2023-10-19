@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Pull Docker image from GHCR
-          run: docker pull ghcr.io/osachi/arkadium:latest
+        run: docker pull ghcr.io/osachi/arkadium:latest
       - name: Run tests
         run: docker run  --rm  arcadium
 
