@@ -5,13 +5,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: ls
-        run: ls
       - name: Build-push-action
         uses: docker/build-push-action@v5
         with:
-          context: .
           push: true
-          tags: 'ghcr.io/osachi/arkadium:latest'
+          tags: 'docker.io/osachi/arkadium:latest'
 #          cache-from: type=gha
 #          cache-to: 'type=gha,mode=max'
