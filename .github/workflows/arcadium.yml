@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-          run: docker build -t arcadium -f Dockerfile .
+        run: docker build -t arcadium -f Dockerfile .
       - name: Run tests
         run: docker run  --rm  arcadium
 
