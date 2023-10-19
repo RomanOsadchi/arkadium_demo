@@ -5,12 +5,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-  - uses: docker/build-push-action@v5
-  - name: Build-push-action
-    with:
-      context: .
-      push: true
-      tags: "ghcr.io/osachi/arkadium:latest"
-      cache-from: type=gha
-      cache-to: type=gha,mode=max
+    steps:
+    - uses: docker/build-push-action@v5
+    - name: Build-push-action
+      with:
+        context: .
+        push: true
+        tags: "ghcr.io/osachi/arkadium:latest"
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
