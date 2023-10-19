@@ -22,12 +22,14 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: osachi/arkadium:latest
+      ports:
+        - 80
     steps:
       - uses: actions/checkout@v3
-      - name: Pull Docker image
-        run: docker pull osachi/arkadium:latest
       - name: Run tests
-        run: docker run  --rm  osachi/arkadium
+        run: npx playwright test
 
 
 
