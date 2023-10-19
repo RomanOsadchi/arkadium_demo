@@ -51,3 +51,25 @@ test('Resolve crossword', async ({ page, gamePage, testData }) => {
         await canvasBox.clickByText('Submit Total Score');
     });
 });
+
+test('Check anti-adblocker', async ({ page, gamePage }) => {
+    await allure.id('2');
+
+    await test.step('Activate adblocker', async () => {
+        await gamePage.enableAdblocker();
+    });
+
+    await test.step('Go to game page', async () => {
+        await page.goto('/games/daily-quick-crossword', { waitUntil: 'domcontentloaded' });
+    });
+
+    await test.step('"We noticed that you are using an ad blocker" banner should be visible', async () => {
+        await gamePage.clickAgreeButtonIfExists();
+        await expect(gamePage.getYouAreUsingAdBlockerContainer()).toBeVisible();
+        await expect(gamePage.getYouAreUsingAdBlockerContainer())
+            .toContainText('We noticed that you are using an ad blocker.');
+    });
+    await test.step('Match banner screenshot with the saved one', async () => {
+        expect(await gamePage.getYouAreUsingAdBlockerContainer().screenshot()).toMatchSnapshot();
+    });
+});

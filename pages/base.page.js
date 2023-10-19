@@ -14,7 +14,7 @@ export class BasePage {
     };
 
     enableAdblocker = async () => {
-        PlaywrightBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
+        await PlaywrightBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
             blocker.enableBlockingInPage(this.page);
         });
         await this.page.route('**/*', (route) => {
@@ -44,4 +44,5 @@ export class BasePage {
             time++;
         }
     };
+    getYouAreUsingAdBlockerContainer = () => this.page.locator('[data-element-description="game"]');
 }
