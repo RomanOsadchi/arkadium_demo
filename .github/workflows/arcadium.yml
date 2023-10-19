@@ -9,7 +9,7 @@ env:
   ALLURE_ENDPOINT: https://yuri.testops.cloud
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
   ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
-  ALLURE_RESULTS: "allure-results"
+  ALLURE_RESULTS: "./allure-results"
   ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
 
 jobs:
@@ -28,6 +28,8 @@ jobs:
           allure-endpoint: https://yuri.testops.cloud
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allure-project-id: ${{ secrets.ALLURE_PROJECT_ID }}
+      - name: connect allur
+        run: allurectl watch
       - name: Install dependencies
         run: npm ci
       - name: Run tests
