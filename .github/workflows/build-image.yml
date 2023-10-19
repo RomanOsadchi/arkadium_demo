@@ -9,6 +9,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: 'ghcr.io/osachi/arkadium:latest'
-#          cache-from: type=gha
-#          cache-to: 'type=gha,mode=max'
+          image: 'osachi/arkadium'
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD}}
+
