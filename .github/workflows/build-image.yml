@@ -9,6 +9,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: 'docker.io/osachi/arkadium:latest'
+          tags: 'ghcr.io/osachi/arkadium:latest'
 #          cache-from: type=gha
 #          cache-to: 'type=gha,mode=max'
