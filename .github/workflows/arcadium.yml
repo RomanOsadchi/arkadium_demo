@@ -1,4 +1,4 @@
-name: build project
+name: run tests
 on:
   workflow_dispatch:
   pull_request:
@@ -6,11 +6,12 @@ on:
       - main
 jobs:
   build:
-    using: 'docker'
-    image: 'Dockerfile'
     steps:
       - uses: actions/checkout@v3
+      - name: Build the Docker image
+          run: docker build -t arcadium -f Dockerfile .
       - name: Run tests
-        run: npx playwright test
+        run: docker run  --rm  arcadium
+
 
 
