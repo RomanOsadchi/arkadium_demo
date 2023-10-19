@@ -17,7 +17,6 @@ export class CanvasBoxIframe extends BasePage {
     }
 
     clickByText = (text) => this.frame.getByText(text, { exact: true }).click();
-
     getHeaderMonthAndYear = async () => {
         const dateStr = await this.frame.locator(this.#dateHeader).innerText({ timeout: 80000 });
         return dateStr.split(' ');
@@ -50,11 +49,18 @@ export class CanvasBoxIframe extends BasePage {
             await this.page.keyboard.press('Enter');
         }
     };
+
     resolveCrosswordWithRevealing = async () => {
         for (let i = 0; i < 26; i++) {
             await this.clickRevealButton();
             await this.clickByText('Reveal word');
             await this.page.keyboard.press('Enter');
         }
+    };
+
+    invokeDateFromFooter = async () => {
+        const footerInfo = await this.getFooterInfo().innerText();
+        const dateRegex = /(\d{1,2}\s\w+\s\d{4})/;
+        return footerInfo.match(dateRegex)[0];
     };
 }

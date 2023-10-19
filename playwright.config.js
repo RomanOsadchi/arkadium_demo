@@ -14,9 +14,10 @@ export default defineConfig({
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 1 : 0,
-    workers: process.env.CI ? 6 : undefined,
+    workers: process.env.CI ? 2 : undefined,
     reporter: [
         ['line'],
+        ['junit', { outputFile: 'results.xml' }],
         [
             'allure-playwright', {
                 detail: false,
@@ -41,10 +42,10 @@ export default defineConfig({
             name: 'chromium-en',
             use: {
                 ...devices['Desktop Chrome'],
-                // channel: 'chrome',
                 locale: 'en-US'
             }
         }
+
     ]
 
     /* Run your local dev server before starting the tests */
