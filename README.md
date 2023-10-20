@@ -30,7 +30,7 @@ Docker
 
 To run the tests with Docker use the command:
 ```
-docker run  --rm -v ${pwd}:/app osachi/arkadium npx playwright test best*
+docker run  --rm -v ${pwd}:/app osachi/arkadium npx playwright test
 ```
 The same way you can generate report if you have Nodejs and Allure:
 ```
