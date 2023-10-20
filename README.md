@@ -23,6 +23,11 @@ npx playwright test
 allure generate .
 allure serve
 ```
+Also you can ran tests in ui mode for debugging:
+```
+npx playwright test --ui
+```
+![](./img.png)
 Note that 1 test fails intentionally, for demonstration purposes:)
 
 If you are using Windows, run the commands in Git Bash.
