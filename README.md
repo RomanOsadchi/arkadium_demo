@@ -23,7 +23,7 @@ npx playwright test
 allure generate .
 allure serve
 ```
-Also you can ran tests in ui mode for debugging:
+Also you can run tests in ui mode for debugging:
 ```
 npx playwright test --ui
 ```
