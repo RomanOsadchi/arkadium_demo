@@ -17,6 +17,12 @@ To run the tests with the generation of an Allure report, use the following comm
 npm run test
 npm run report
 ```
+or
+```
+npx playwright test
+allure generate .
+allure serve
+```
 Note that 1 test fails intentionally, for demonstration purposes:)
 
 If you are using Windows, run the commands in Git Bash.
