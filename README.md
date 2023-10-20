@@ -1,6 +1,6 @@
-# arkadium technical test
+# Arkadium technical test
 
-# local run
+# Local run
 Requirements:
 
 Node.js 18
@@ -21,7 +21,7 @@ Note that 1 test fails intentionally, for demonstration purposes:)
 
 If you are using Windows, run the commands in Git Bash.
 
-# docker run
+# Docker run
 
 Requirements:
 
