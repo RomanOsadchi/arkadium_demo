@@ -1,7 +1,10 @@
 import { PlaywrightBlocker } from '@cliqz/adblocker-playwright';
+import { expect } from '../fixtures/base.fixture';
 import fetch from 'cross-fetch';
 
 export class BasePage {
+    #antiAdblockerBox = '[data-element-description="game"]';
+
     constructor(page) {
         this.page = page;
     }
@@ -27,22 +30,13 @@ export class BasePage {
         const btn = await this.page.getByRole('button', { name: 'AGREE', exact: true });
         if(await btn.count()) await btn.click();
     };
-    waitForSpinner = async (loader = '.ListArray-loader') => {
-        let spinner = false;
-        let time = 0;
-        while (!spinner && time < 40) {
-            if (await this.page.locator(loader).count()) {
-                await this.page.locator(loader).scrollIntoViewIfNeeded();
-                // await expect(this.page.locator(loader)).toHaveCount(0, {timeout: 300000});
-                if (await this.page.locator(loader).count() === 0) {
-                    spinner = true;
-                    break;
-                }
-                await this.page.waitForTimeout(50);
-            }
-            await this.page.waitForTimeout(50);
-            time++;
-        }
+
+    getYouAreUsingAdBlockerContainer = () => this.page.locator(this.#antiAdblockerBox);
+
+    compareMonthAndYearWithCurrent = (month, year) => {
+        const targetDate = new Date(Date.UTC(year, month, 1));
+        const currentDate = new Date();
+        expect(targetDate.getUTCMonth()).toEqual(currentDate.getUTCMonth());
+        expect(targetDate.getUTCFullYear()).toEqual(currentDate.getUTCFullYear());
     };
-    getYouAreUsingAdBlockerContainer = () => this.page.locator('[data-element-description="game"]');
 }

@@ -2,9 +2,9 @@ import { expect, test } from '../../fixtures/base.fixture';
 // eslint-disable-next-line import/named
 import { CanvasBoxIframe } from '../../pages';
 import { allure } from 'allure-playwright';
+import { convertMonthToNumber } from '../../utills/crossword.utills';
 
-
-test('Resolve crossword', async ({ page, gamePage, testData }) => {
+test('Resolve crossword', async ({ page, gamePage }) => {
     const dayToPick = 1;
     await allure.id('1');
 
@@ -25,15 +25,9 @@ test('Resolve crossword', async ({ page, gamePage, testData }) => {
 
     await test.step('Pick date and check it in game', async () => {
         const [monthText, yearText] = await canvasBox.getHeaderMonthAndYear();
-        const month = testData['monthMap'][monthText.toUpperCase()];
-        const targetDate = new Date(Date.UTC(yearText, month, dayToPick));
-        const currentDate = new Date();
-        expect(targetDate.getUTCMonth()).toEqual(currentDate.getUTCMonth());
-        expect(targetDate.getUTCFullYear()).toEqual(currentDate.getUTCFullYear());
+        await gamePage.compareMonthAndYearWithCurrent(convertMonthToNumber(monthText), yearText);
         await canvasBox.clickPlayByData(dayToPick);
-        const footerInfo = await canvasBox.getFooterInfo().innerText();
-        const dateRegex = /(\d{1,2}\s\w+\s\d{4})/;
-        const footerDate = footerInfo.match(dateRegex)[0];
+        const footerDate = await canvasBox.invokeDateFromFooter();
         expect(footerDate.toLowerCase()).toEqual(`${dayToPick} ${monthText.toLowerCase()} ${yearText}`);
     });
 
@@ -52,7 +46,7 @@ test('Resolve crossword', async ({ page, gamePage, testData }) => {
     });
 });
 
-test('Check anti-adblocker', async ({ page, gamePage }) => {
+test('Check anti-adblocker', async ({ page, gamePage, testData }) => {
     await allure.id('34');
 
     await test.step('Activate adblocker', async () => {
@@ -67,7 +61,7 @@ test('Check anti-adblocker', async ({ page, gamePage }) => {
         await gamePage.clickAgreeButtonIfExists();
         await expect(gamePage.getYouAreUsingAdBlockerContainer()).toBeVisible();
         await expect(gamePage.getYouAreUsingAdBlockerContainer())
-            .toContainText('We noticed that you are using an ad blocker.');
+            .toContainText(testData.youUseAdblockerText);
     });
 
     await test.step('Match banner screenshot with the saved one', async () => {

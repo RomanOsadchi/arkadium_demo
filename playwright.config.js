@@ -41,10 +41,10 @@ export default defineConfig({
             name: 'chromium-en',
             use: {
                 ...devices['Desktop Chrome'],
-                // channel: 'chrome',
                 locale: 'en-US'
             }
         }
+
     ]
 
     /* Run your local dev server before starting the tests */
