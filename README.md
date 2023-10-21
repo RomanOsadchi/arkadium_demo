@@ -3,7 +3,7 @@
 # Local run
 Requirements:
 
-Node.js 18
+Node.js 18+
 
 Allure reporter installed on your operating system for report
 
