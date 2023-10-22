@@ -86,3 +86,49 @@ test('Failed test example', async ({ page, gamePage }) => {
         expect(await gamePage.getGameHeaderTitle().screenshot()).toMatchSnapshot();
     });
 });
+
+test.only('canvas test', async ({ page, context }) => {
+    await page.goto('http://127.0.0.1:3000/index.html');
+    const canvasHandle = await page.locator('#canvas');
+
+    const objects = async () => await canvasHandle.evaluate((canvas) => {
+        canvas.addEventListener('click', (event) => {
+            const x = event.clientX - canvas.getBoundingClientRect().left;
+            const y = event.clientY - canvas.getBoundingClientRect().top;
+            console.log(`Click - X: ${x}, Y: ${y}`);
+        });
+        const ctx = canvas.getContext('2d');
+        return structuredClone(ctx.get_objectcs()).map((el) => {
+            el.x -= canvas.getBoundingClientRect().left;
+            el.y -= canvas.getBoundingClientRect().top;
+            return el;
+        });
+    });
+
+    const getPlayers = async () => {
+        const obj = await objects();
+        return[
+            obj.find((o) => o.player === 1),
+            obj.find((o) => o.player === 2),
+            obj.find((o) => o.type === 'puck')
+        ];
+    };
+    for (let i = 0; i < 100; i++) {
+        let [player1, player2, ball] = await getPlayers();
+        await page.mouse.move(player1.x, player1.y);
+        await page.mouse.down();
+        await page.mouse.move(ball.x, ball.y - 4, { steps:10 });
+        await page.mouse.up();
+        await page.waitForTimeout(2000);
+        console.log(player1, player2, ball);
+        [player1, player2, ball] = await getPlayers();
+        await page.mouse.move(player2.x, player2.y);
+        await page.mouse.down();
+        await page.mouse.move(ball.x, ball.y + 5, { steps:10 });
+        await page.mouse.up();
+        await page.waitForTimeout(2000);
+    }
+
+
+    // await page.pause();
+});
