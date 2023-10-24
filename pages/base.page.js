@@ -27,12 +27,12 @@ export class BasePage {
     };
 
     clickAgreeButtonIfExists = async () => {
-        const btnEl = await this.page.getByRole('button', { name: 'AGREE', exact: true })
+        const btnEl = await this.page.getByRole('button', { name: 'AGREE', exact: true });
         try {
-            await this.page.waitForSelector('[role="dialog"]', {timeout: 2000})
-            await btnEl.click()
-        } catch (er){
-            // no element, continue test
+            await this.page.waitForSelector('[role="dialog"]', { timeout: 2000 });
+            await btnEl.click();
+        } catch (er) {
+            // no popup, continue test
         }
     };
 
