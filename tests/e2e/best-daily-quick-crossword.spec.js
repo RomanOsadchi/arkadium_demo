@@ -26,7 +26,7 @@ test('Resolve crossword', async ({ page, gamePage }) => {
     await test.step('Pick date and check it in game', async () => {
         const [monthText, yearText] = await canvasBox.getHeaderMonthAndYear();
         await gamePage.compareMonthAndYearWithCurrent(convertMonthToNumber(monthText), yearText);
-        await canvasBox.clickPlayByData(dayToPick);
+        await canvasBox.clickPlayByDate(dayToPick);
         const footerDate = await canvasBox.invokeDateFromFooter();
         expect(footerDate.toLowerCase()).toEqual(`${dayToPick} ${monthText.toLowerCase()} ${yearText}`);
     });

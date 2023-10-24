@@ -21,7 +21,7 @@ export class CanvasBoxIframe extends BasePage {
         const dateStr = await this.frame.locator(this.#dateHeader).innerText({ timeout: 80000 });
         return dateStr.split(' ');
     };
-    clickPlayByData = (day) => this.frame.locator(this.#dateCards)
+    clickPlayByDate = (day) => this.frame.locator(this.#dateCards)
         .getByText(day.toString(), { exact: true })
         .click({ force: true });
     getFooterInfo = () => this.frame.locator(this.#footerInfo);
