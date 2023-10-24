@@ -78,6 +78,7 @@ test('Failed test example', async ({ page, gamePage }) => {
     });
 
     await test.step('Purposely replacing header fonts', async () => {
+        await gamePage.clickAgreeButtonIfExists();
         const header = gamePage.getGameHeaderTitle();
         await header.evaluate((el) => el.style['font-family'] = 'Serif,sans-serif');
     });
