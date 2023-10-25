@@ -71,3 +71,4 @@ steps:
     inputs:
       reports: 'report.xml'
       targetdir: 'test-results'
+    condition: succeededOrFailed()
