@@ -58,7 +58,12 @@ steps:
     inputs:
       testResultsFormat: 'jUnit'
       testResultsFiles: 'results.xml'
+      searchFolder: test-results
       testRunTitle: Unit test results for $(Build.BuildNumber)
       buildConfiguration: debug
       mergeTestResults: true
+      failTaskOnFailedTests: true
+      publishRunAttachments: true
+      failTaskOnMissingResultsFile: true
     condition: always()
+  
