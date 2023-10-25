@@ -67,4 +67,7 @@ steps:
       artifact: test-results
       publishLocation: 'pipeline'
     condition: succeededOrFailed()
-  
+  - task: reportgenerator@5
+    inputs:
+      reports: 'report.xml'
+      targetdir: 'test-results'
