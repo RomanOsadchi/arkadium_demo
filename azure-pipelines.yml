@@ -54,7 +54,12 @@ steps:
       testRunTitle: Test results for build $(Build.BuildNumber)
       buildConfiguration: debug
       mergeTestResults: true
+      publishRunAttachments: true
       failTaskOnMissingResultsFile: true
     condition: succeededOrFailed()
-
-  
+  - task: PublishPipelineArtifact@1
+    inputs:
+      targetPath: test-results
+      artifact: test-results
+      publishLocation: 'pipeline'
+    condition: succeededOrFailed()

@@ -1,8 +1,7 @@
-
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-
+// default environment 'dev'
 const ENV = process.env.ENV || process.env.NODE_ENV || 'dev';
 dotenv.config({ path: `config/env-config.${ENV}.env` });
 
@@ -17,8 +16,8 @@ export default defineConfig({
     workers: process.env.CI ? 2 : undefined,
     reporter: [
         ['line'],
-        ['junit', { outputFile: 'test-results/results.xml' }],
-        [
+        ['junit', { outputFile: 'test-results/results.xml' }], // jUnit reporter
+        [                                                       // allure reporter
             'allure-playwright', {
                 detail: false,
                 suiteTitle: false,
@@ -32,7 +31,7 @@ export default defineConfig({
         navigationTimeout: 30000,
         actionTimeout: 20000,
         ignoreHTTPSErrors: true,
-        trace: 'off',
+        trace: 'retain-on-failure',  // playwright trace for debugging
         screenshot: 'on',
         video: 'on'
 
@@ -45,7 +44,6 @@ export default defineConfig({
                 locale: 'en-US'
             }
         }
-
     ]
 
     /* Run your local dev server before starting the tests */

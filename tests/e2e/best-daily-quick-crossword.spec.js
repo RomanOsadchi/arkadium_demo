@@ -1,7 +1,7 @@
 import { expect, test } from '../../fixtures/base.fixture';
 // eslint-disable-next-line import/named
 import { CanvasBoxIframe } from '../../pages';
-import { allure } from 'allure-playwright';
+import { allure } from 'allure-playwright'; // used for setting allure meta info
 import { convertMonthToNumber } from '../../utills/crossword.utills';
 
 test('Resolve crossword', async ({ page, gamePage }) => {
@@ -20,12 +20,13 @@ test('Resolve crossword', async ({ page, gamePage }) => {
 
     let canvasBox;
     await test.step('Wait for ad finish and canvas box appears', async () => {
+        // iframe object created to conveniently work with the elements inside
         canvasBox = new CanvasBoxIframe(page, await gamePage.getCanvasBox());
     });
 
     await test.step('Pick date and check it in game', async () => {
         const [monthText, yearText] = await canvasBox.getHeaderMonthAndYear();
-        await gamePage.compareMonthAndYearWithCurrent(convertMonthToNumber(monthText), yearText);
+        await gamePage.compareMonthAndYearWithCurrentDate(convertMonthToNumber(monthText), yearText);
         await canvasBox.clickPlayByDate(dayToPick);
         const footerDate = await canvasBox.invokeDateFromFooter();
         expect(footerDate.toLowerCase()).toEqual(`${dayToPick} ${monthText.toLowerCase()} ${yearText}`);
@@ -41,8 +42,9 @@ test('Resolve crossword', async ({ page, gamePage }) => {
         expect(await canvasBox.getGameEndPopup().screenshot()).toMatchSnapshot({ maxDiffPixelRatio: 0.15 });
     });
 
-    await test.step('Submit total score', async () => {
+    await test.step('Submit total score, play again button should be visible', async () => {
         await canvasBox.clickByText('Submit Total Score');
+        await expect(gamePage.getPlayAgainButton()).toBeVisible();
     });
 });
 

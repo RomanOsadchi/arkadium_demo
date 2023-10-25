@@ -3,12 +3,15 @@ import { expect } from '../fixtures/base.fixture';
 import fetch from 'cross-fetch';
 
 export class BasePage {
+    // locators
     #antiAdblockerBox = '[data-element-description="game"]';
 
+    // initializing an page object based on 'page' object extracted from fixture
     constructor(page) {
         this.page = page;
     }
 
+    // Page Object methods
     blockMedia = async () => {
         await this.page.route('**/*', (route) => {
             return route.request().resourceType() === 'media' ?
@@ -38,7 +41,7 @@ export class BasePage {
 
     getYouAreUsingAdBlockerContainer = () => this.page.locator(this.#antiAdblockerBox);
 
-    compareMonthAndYearWithCurrent = (month, year) => {
+    compareMonthAndYearWithCurrentDate = (month, year) => {
         const targetDate = new Date(Date.UTC(year, month, 1));
         const currentDate = new Date();
         expect(targetDate.getUTCMonth()).toEqual(currentDate.getUTCMonth());

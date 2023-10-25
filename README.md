@@ -1,4 +1,6 @@
 # Arkadium technical test
+The framework uses the playwright library.
+More documentation about playwright: https://playwright.dev/docs/intro
 
 # Local run
 Requirements:
@@ -13,14 +15,20 @@ Before running the tests, make sure to install the dependencies:
 npm install
 npx playwright install
 ```
-To run the tests with the generation of an Allure report, use the following command:
+To run the tests use the following command:
 ```
 npm run test
-npm run report
 ```
 or
 ```
 npx playwright test
+```
+To generate Allure report use command
+```
+npm run report
+```
+or
+```
 allure generate .
 allure serve
 ```
@@ -29,9 +37,9 @@ Also you can run tests in ui mode for debugging:
 npx playwright test --ui
 ```
 ![](./img.png)
-Note that 1 test fails intentionally, for demonstration purposes:)
+Note that 1 test fails intentionally, for demonstration purposes.
 
-If you are using Windows, run the commands in Git Bash.
+If you are using Windows, better run the commands in Git Bash.
 
 # Docker run
 
@@ -54,3 +62,12 @@ Tests can be run on GitHub Actions. Go to the repository. Open the Actions tab, 
 The test run will start and you will be able to watch it progress on the allure testops here:
 https://yuri.testops.cloud/project/1/launches.
 Then you can see the result of the run. Credentials for allure testops will be provided you upon your request.
+
+# Azure devops run
+Link to pipeline https://dev.azure.com/romanosadchi/arcadium_demo/_build
+Start build and after the run is completed, you can see the results in the "Test" tab,
+a more detailed report can be seen in the "Allure report" tab.
+
+Additionally, integration with "Allure testops" has been added,
+where you can see the launch results from with ADO: https://yuri.testops.cloud/project/1/launches.
+I note that allure testops does not run tests, it only publishes test results from azure runner.
