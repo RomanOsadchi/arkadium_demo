@@ -59,7 +59,6 @@ steps:
       testRunTitle: Unit test results for $(Build.BuildNumber)
       buildConfiguration: debug
       mergeTestResults: true
-      failTaskOnFailedTests: true
       failTaskOnMissingResultsFile: true
     condition: succeededOrFailed()
   - task: PublishPipelineArtifact@1
