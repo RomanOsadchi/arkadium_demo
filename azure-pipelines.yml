@@ -47,9 +47,6 @@ steps:
   - publish: $(System.DefaultWorkingDirectory)/allure-report
     artifact: allure-report
     condition: always()
-  - publish: $(System.DefaultWorkingDirectory)/results.xml
-    artifact: results.xml
-    condition: always()
   - publish: $(System.DefaultWorkingDirectory)/test-results
     artifact: test-results
     condition: always()
@@ -63,13 +60,12 @@ steps:
       buildConfiguration: debug
       mergeTestResults: true
       failTaskOnFailedTests: true
-      publishRunAttachments: true
       failTaskOnMissingResultsFile: true
     condition: succeededOrFailed()
   - task: PublishPipelineArtifact@1
     inputs:
-      targetPath: playwright-report
-      artifact: playwright-report
+      targetPath: test-results
+      artifact: test-results
       publishLocation: 'pipeline'
     condition: succeededOrFailed()
   
