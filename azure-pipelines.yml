@@ -56,9 +56,5 @@ steps:
       mergeTestResults: true
       failTaskOnMissingResultsFile: true
     condition: succeededOrFailed()
-  - task: PublishPipelineArtifact@1
-    inputs:
-      targetPath: test-results
-      publishLocation: 'pipeline'
-    condition: succeededOrFailed()
+
   
