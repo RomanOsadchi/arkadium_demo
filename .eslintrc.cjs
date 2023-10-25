@@ -10,10 +10,10 @@ module.exports = {
     },
     root: true,
     rules: {
-        'linebreak-style': [
-            1,
-            'unix'
-        ],
+        // 'linebreak-style': [
+        //     1,
+        //     'unix'
+        // ],
         'quotes': [
             'warn',
             'single'
