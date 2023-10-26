@@ -1,5 +1,6 @@
 # Arkadium technical test
 The framework uses the playwright library.
+All spec files with tests are located in "tests" folder, marked with .spec
 More documentation about playwright: https://playwright.dev/docs/intro
 
 # Local run
