@@ -37,6 +37,10 @@ export default defineConfig({
 
     },
     projects: [
+        /*
+        Several projects can be specified.
+        All projects will be launched simultaneously or with dependencies
+         */
         {
             name: 'chromium-en',
             use: {
