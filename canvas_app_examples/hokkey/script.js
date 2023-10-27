@@ -32,7 +32,7 @@ const centerX = canvas.width / 2;
 const centerY = canvas.height / 2;
 
 let circles = [];
-c.get_objectcs = () => circles;
+c.getObjects = () => circles;
 function resetGame() {
     circles = [
         {

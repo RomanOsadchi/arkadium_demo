@@ -98,7 +98,7 @@ test.only('canvas test', async ({ page, context }) => {
             console.log(`Click - X: ${x}, Y: ${y}`);
         });
         const ctx = canvas.getContext('2d');
-        return structuredClone(ctx.get_objectcs()).map((el) => {
+        return structuredClone(ctx.getObjects()).map((el) => {
             el.x -= canvas.getBoundingClientRect().left;
             el.y -= canvas.getBoundingClientRect().top;
             return el;
