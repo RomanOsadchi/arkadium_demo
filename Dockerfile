@@ -7,6 +7,7 @@ COPY . ./
 
 RUN npm install
 RUN npx playwright install
+#allure installation
 RUN apt-get update ; apt-get install -y openjdk-11-jdk ; export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64 ; npm install --save-dev allure-commandline
 
 CMD ['bash']

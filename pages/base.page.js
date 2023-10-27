@@ -19,6 +19,7 @@ export class BasePage {
         });
     };
 
+    // Enable adblocker and block media
     enableAdblocker = async () => {
         await PlaywrightBlocker.fromPrebuiltAdsAndTracking(fetch).then((blocker) => {
             blocker.enableBlockingInPage(this.page);

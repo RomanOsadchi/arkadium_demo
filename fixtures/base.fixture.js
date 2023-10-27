@@ -4,7 +4,7 @@ import { test as base } from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 
-const ENV = process.env.ENV || process.env.NODE_ENV || 'dev';
+const ENV = process.env.ENV || process.env.NODE_ENV || 'dev'; // Define environment variable, defaulting to 'dev'
 
 /*
 This fixture will be used to initialize tests.
@@ -31,7 +31,7 @@ const test = base.extend(
 
 );
 
-export { test };
+export { test }; // Export the 'test' fixture
 export {
     expect, chromium, webkit, firefox
 } from '@playwright/test';

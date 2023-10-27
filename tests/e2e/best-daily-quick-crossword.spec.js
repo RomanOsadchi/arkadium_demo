@@ -85,6 +85,7 @@ test('Failed test example', async ({ page, gamePage }) => {
         await header.evaluate((el) => el.style['font-family'] = 'Serif,sans-serif');
     });
 
+    // this step must fail cause of different header fonts
     await test.step('Match banner screenshot with the saved one', async () => {
         expect(await gamePage.getGameHeaderTitle().screenshot()).toMatchSnapshot();
     });
